@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fashion Zack</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="shortcut icon" href="p.png" type="image/png">
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .logo h1 {
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    .logo p {
+      color: #e0e0e0;
+      font-style: italic;
+    }
+
+    .search-bar input {
+      padding: 10px 15px;
+      width: 300px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    .header-buttons a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .header-buttons .btn {
+      padding: 10px 20px;
+      background: #e74c3c;
+      color: #fff;
+      border-radius: 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .header-buttons .btn:hover {
+      background: #c0392b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .product-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    .product-card {
+      flex-basis: calc(33.333% - 20px);
+      margin-bottom: 40px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .product-images {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-images img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-images:hover img {
+      transform: scale(1.1);
+    }
+
+    .product-details {
+      padding: 20px;
+    }
+
+    .product-details h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .product-details p {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    .product-details .price {
+      font-size: 24px;
+      color: #e74c3c;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .btn-buy {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: #fff;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-buy:hover {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 60px 0;
+      margin-top: 50px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      margin-right: 20px;
+      min-width: 200px;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 2px;
+      background: #fff;
+    }
+
+    .footer-section p, .footer-section a {
+      color: #e0e0e0;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: #fff;
+      transform: translateX(5px);
+    }
+
+    .social-icons img {
+      width: 30px;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons img:hover {
+      transform: translateY(-5px);
+    }
+
+    .part-8 {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .part-8 h3 {
+      font-size: 14px;
+      color: #e0e0e0;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-bar input {
+        width: 100%;
+        margin: 40px 0;
+      }
+
+      .header-buttons {
+        text-align: center;
+      }
+
+      .product-card {
+        flex-basis: 100%;
+      }
+
+      .footer-section {
+        flex-basis: 100%;
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="fz2.png" alt="Company Logo">
+          <h1>FASHION ZACK</h1>
+          <p>Explore Fashion</p>
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search products...">
+        </div>
+        <div class="header-buttons">
+          <a href="#">Login</a>
+          <a href="#" class="btn">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Our Featured Products</h1>
+    
+    <section class="product-section">
+      <div class="product-card">
+        <div class="product-images">
+          <img src="jacket.webp" alt="Product Image">
+        </div>
+        <div class="product-details">
+          <h2>Stylish Jacket</h2>
+          <p>A comfortable and trendy jacket perfect for any occasion.</p>
+          <p class="price">$79.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>  
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="2.jpg" alt="Product Image">
+        </div>
+        <div class="product-details">
+          <h2>Classic Sneakers</h2>
+          <p>Versatile sneakers that combine style and comfort.</p>
+          <p class="price">$59.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="watch3.webp" alt="Product Image">
+        </div>
+        <div class="product-details">
+          <h2>Smart Watch</h2>
+          <p>A feature-packed smartwatch for the modern lifestyle.</p>
+          <p class="price">$129.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="buds2.webp" alt="Wireless Earbuds">
+        </div>
+        <div class="product-details">
+          <h2>Wireless Earbuds</h2>
+          <p>High-quality sound in a compact, wireless design.</p>
+          <p class="price">$89.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="sam1.webp" alt="Smartphone">
+        </div>
+        <div class="product-details">
+          <h2>Latest Smartphone</h2>
+          <p>Cutting-edge technology in a sleek, powerful device.</p>
+          <p class="price">$699.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="lap1.webp" alt="Laptop">
+        </div>
+        <div class="product-details">
+          <h2>Ultra-thin Laptop</h2>
+          <p>Powerful performance in a lightweight, portable design.</p>
+          <p class="price">$1299.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="cam1.webp" alt="Digital Camera">
+        </div>
+        <div class="product-details">
+          <h2>Digital Camera</h2>
+          <p>Capture life's moments with stunning clarity and detail.</p>
+          <p class="price">$499.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="head.webp" alt="Over-ear Headphones">
+        </div>
+        <div class="product-details">
+          <h2>Over-ear Headphones</h2>
+          <p>Immersive sound experience with premium comfort.</p>
+          <p class="price">$199.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="tab.webp" alt="Tablet">
+        </div>
+        <div class="product-details">
+          <h2>Versatile Tablet</h2>
+          <p>Perfect for work and play with a vibrant display.</p>
+          <p class="price">$349.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="speaker.webp" alt="Smart Speaker">
+        </div>
+        <div class="product-details">
+          <h2>Smart Speaker</h2>
+          <p>Voice-controlled assistant with premium sound quality.</p>
+          <p class="price">$79.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="fit.webp" alt="Fitness Tracker">
+        </div>
+        <div class="product-details">
+          <h2>Fitness Tracker</h2>
+          <p>Monitor your health and fitness goals with precision.</p>
+          <p class="price">$69.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="back.jpeg" alt="Smart Backpack">
+        </div>
+        <div class="product-details">
+          <h2>Smart Backpack</h2>
+          <p>Stylish backpack with built-in charging and anti-theft features.</p>
+          <p class="price">$69.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+       <div class="product-card">
+        <div class="product-images">
+          <img src="game.webp" alt="Gaming Console">
+        </div>
+        <div class="product-details">
+          <h2>Next-Gen Gaming Console</h2>
+          <p>Immersive gaming experience with stunning graphics and fast load times.</p>
+          <p class="price">$499.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="bluthot.webp" alt="Portable Bluetooth Speaker">
+        </div>
+        <div class="product-details">
+          <h2>Portable Bluetooth Speaker</h2>
+          <p>Powerful sound in a compact, waterproof design for outdoor adventures.</p>
+          <p class="price">$89.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="coffee.webp" alt="Smart Coffee Maker">
+        </div>
+        <div class="product-details">
+          <h2>Smart Coffee Maker</h2>
+          <p>Brew your perfect cup with smartphone control and customizable settings.</p>
+          <p class="price">$129.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="wireless.webp" alt="Wireless Charging Pad">
+        </div>
+        <div class="product-details">
+          <h2>Wireless Charging Pad</h2>
+          <p>Fast and convenient charging for all your Qi-compatible devices.</p>
+          <p class="price">$39.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="thar.webp" alt="Smart Thermostat">
+        </div>
+        <div class="product-details">
+          <h2>Smart Thermostat</h2>
+          <p>Energy-efficient climate control with learning capabilities.</p>
+          <p class="price">$199.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="ola.webp" alt="Electric Scooter">
+        </div>
+        <div class="product-details">
+          <h2>Electric Scooter</h2>
+          <p>Eco-friendly urban transportation with long-range battery life.</p>
+          <p class="price">$399.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="vaccum.webp" alt="Robot Vacuum Cleaner">
+        </div>
+        <div class="product-details">
+          <h2>Robot Vacuum Cleaner</h2>
+          <p>Smart navigation and powerful suction for effortless cleaning.</p>
+          <p class="price">$299.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="doorball.webp" alt="Smart Video Doorbell">
+        </div>
+        <div class="product-details">
+          <h2>Smart Video Doorbell</h2>
+          <p>HD video and two-way audio for enhanced home security.</p>
+          <p class="price">$149.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-images">
+          <img src="air.webp" alt="Smart Air Purifier">
+        </div>
+        <div class="product-details">
+          <h2>Smart Air Purifier</h2>
+          <p>Clean and fresh air with real-time air quality monitoring.</p>
+          <p class="price">$179.99</p>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>Email: abuzar05111999@gmail.com</p>
+          <p>Phone: 9607554932</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="#">About Us</a>
+          <a href="#">FAQs</a>
+          <a href="#">Shipping Information</a>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><img src="facebook.png" alt="Facebook"></a>
+            <a href="https://instagram.com" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+            <a href="https://twitter.com" target="_blank"><img src="twitter.png" alt="Twitter"></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <p>Park Avenue</p>
+          <p>London 43 2 BOND STREET</p>
+          <p>UK England</p>
+        </div>
+      </div>
+    </div>
+    <div class="part-8">
+      <h3>© 2022-2024 FashionZack.com</h3>
+      <h3>© Made By Abuzar Ansari - || Powered By FASHION ZACK || All Rights Reserved</h3>
+    </div>
+  </footer>
+
+  <script>
+    function changeImage(imageSrc) {
+      const mainImage = document.getElementById('main-image');
+      mainImage.src = imageSrc;
+    }
+
+    document.querySelectorAll('.btn-buy').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Thank you for your purchase!');
+      });
+    });
+
+    const socialIcons = document.querySelectorAll('.social-icons img');
+    socialIcons.forEach(icon => {
+      icon.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('You are being redirected to: ' + this.alt);
+      });
+    });
+  </script>
+</body>
+</html>
